@@ -1,133 +1,81 @@
-// Initialize AOS (Animate On Scroll)
-AOS.init({
-  once: true, 
-  offset: 120, 
-  duration: 800,
+/* ── PRELOADER ─────────────────────────────── */
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        document.getElementById('preloader').classList.add('hidden');
+        animateHero();
+    }, 1600);
 });
 
-function openTab(evt, tabId) {
-  // Hide all panes
-  const panes = document.querySelectorAll('.t-pane');
-  panes.forEach(p => p.classList.remove('active'));
-
-  // Deactivate all buttons
-  const buttons = document.querySelectorAll('.t-btn');
-  buttons.forEach(b => b.classList.remove('active'));
-
-  // Show selected
-  document.getElementById(tabId).classList.add('active');
-  evt.currentTarget.classList.add('active');
-}
-
-
-
-
-
-
-
-
-
-// 1. Safely Initialize AOS (so it doesn't break if the script is missing)
-if (typeof AOS !== 'undefined') {
-  AOS.init({
-    once: true, 
-    offset: 120, 
-    duration: 800,
-  });
-}
-
-// 2. Tab Logic (You already have this)
-function openTab(evt, tabId) {
-  const panes = document.querySelectorAll('.t-pane');
-  panes.forEach(p => p.classList.remove('active'));
-
-  const buttons = document.querySelectorAll('.t-btn');
-  buttons.forEach(b => b.classList.remove('active'));
-
-  document.getElementById(tabId).classList.add('active');
-  evt.currentTarget.classList.add('active');
-}
-
-// 3. Back to Top Logic
-const backToTopBtn = document.getElementById("backToTopBtn");
-
-window.onscroll = function() {
-  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-    backToTopBtn.classList.add("show");
-  } else {
-    backToTopBtn.classList.remove("show");
-  }
-};
-
-backToTopBtn.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-});
-
-
-// --- OUR CRAFT UX FIX (Accordion Style) ---
-function toggleCraft(clickedPanel) {
-  // If the user clicks the panel that is ALREADY open, just close it.
-  if (clickedPanel.classList.contains('active')) {
-    clickedPanel.classList.remove('active');
-    return;
-  }
-  
-  // Otherwise, find ALL panels and remove the 'active' class (close them)
-  const allPanels = document.querySelectorAll('.craft-panel');
-  allPanels.forEach(panel => {
-    panel.classList.remove('active');
-  });
-  
-  // Finally, open the one the user just clicked
-  clickedPanel.classList.add('active');
-}
-
-
-
-
-
-
-
-
-// --- CONCEPT MAP SCROLL ANIMATION ---
-document.addEventListener("DOMContentLoaded", () => {
-  const lineFill = document.getElementById("scrollDrawLine");
-  const wrapper = document.querySelector(".concept-wrapper");
-  const nodes = document.querySelectorAll(".concept-node");
-
-  if(!wrapper || !lineFill) return; // Failsafe if not on the page
-
-  window.addEventListener("scroll", () => {
-    // 1. Calculate how far down the wrapper the user has scrolled
-    const wrapperRect = wrapper.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-    
-    // Start drawing when the top of the wrapper enters the middle of the screen
-    let scrollPercentage = ((windowHeight / 1.5) - wrapperRect.top) / wrapperRect.height;
-    
-    // Cap it between 0 and 1 (0% to 100%)
-    scrollPercentage = Math.max(0, Math.min(1, scrollPercentage));
-    
-    // Update the red line height
-    lineFill.style.height = (scrollPercentage * 100) + "%";
-
-    // 2. Light up the nodes when the line touches them
-    nodes.forEach((node) => {
-      const nodeRect = node.getBoundingClientRect();
-      const lineBottom = lineFill.getBoundingClientRect().bottom;
-
-      // If the bottom of the red line passes the middle of the node, light it up
-      if (lineBottom >= (nodeRect.top + (nodeRect.height / 2))) {
-        node.classList.add("active-node");
-      } else {
-        node.classList.remove("active-node");
-      }
+/* ── HERO TEXT REVEAL ──────────────────────── */
+function animateHero() {
+    const items = [
+        { id: 'heroEyebrow', delay: 0 },
+        { id: 'heroTitle',   delay: 180 },
+        { id: 'heroSub',     delay: 420 },
+        { id: 'heroCta',     delay: 620 },
+        { id: 'scrollHint',  delay: 900 },
+    ];
+    items.forEach(({ id, delay }) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        setTimeout(() => {
+            el.style.transition = 'opacity .9s ease, transform .9s ease';
+            el.style.opacity    = '1';
+            el.style.transform  = 'translateY(0)';
+        }, delay);
     });
-  });
-});
+}
 
+/* ── FILM FRAME COUNTER ────────────────────── */
+let frameCount = 1;
+const frameEl  = document.getElementById('frameNum');
+if (frameEl) {
+    setInterval(() => {
+        frameCount++;
+        frameEl.textContent = String(frameCount).padStart(4, '0');
+    }, 1000 / 24);
+}
 
+/* ── STAT COUNTER ──────────────────────────── */
+function countUp(el) {
+    const target = parseInt(el.getAttribute('data-target'));
+    const suffix = el.getAttribute('data-suffix') || '';
+    let count    = 0;
+    const step   = target / (1800 / 16);
+    const timer  = setInterval(() => {
+        count = Math.min(count + step, target);
+        el.textContent = Math.floor(count) + suffix;
+        if (count >= target) clearInterval(timer);
+    }, 16);
+}
 
+const statsSection = document.getElementById('stats');
+if (statsSection) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.querySelectorAll('.stat-number').forEach(countUp);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    observer.observe(statsSection);
+}
+
+/* ── TESTIMONIAL TABS ──────────────────────── */
+function openTab(evt, tabId) {
+    document.querySelectorAll('.t-pane').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.t-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    evt.currentTarget.classList.add('active');
+}
+
+/* ── CRAFT PANELS ──────────────────────────── */
+function toggleCraft(clickedPanel) {
+    if (clickedPanel.classList.contains('active')) {
+        clickedPanel.classList.remove('active');
+        return;
+    }
+    document.querySelectorAll('.craft-panel').forEach(p => p.classList.remove('active'));
+    clickedPanel.classList.add('active');
+}

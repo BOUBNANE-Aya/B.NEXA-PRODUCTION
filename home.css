@@ -1,384 +1,170 @@
-/* Color Variables */
-:root {
-    --bg-dark: #2c2c2c;
-    --bg-light: #d9d9d9;
-    /* The Logo Grey */
-    --accent-color: #8b0000;
-    /* Deep Dark Blood Red */
-    --text-light: #ffffff;
-    --font-main: 'Montserrat', sans-serif;
-    --wall-bg-color: #2c2c2c;
-    /* Matches the grey for the prison wall */
-}
+/* ── PRELOADER ─────────────────────────────── */
+#preloader { transition: opacity .7s ease, visibility .7s ease; }
+#preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 
-body {
-    margin: 0;
-    padding: 0;
-    font-family: var(--font-main);
-    background-color: var(--bg-dark);
-    color: var(--text-light);
-}
+.preloader-logo { animation: preloaderIn .9s ease both; }
 
-
-.accent-text {
-    color: var(--accent-color);
-    font-weight: 700;
-    /* text-shadow: 0px 2px 10px rgba(0, 0, 0, 0.8); */
-}
-
-.accent-text-gold {
-    color: var(--accent-color);
-}
-
-.t-btn.active {
-    background: #ffffff;
-    border-bottom: 2px solid var(--accent-color);
-    box-shadow: 0 4px 12px rgba(139, 0, 0, 0.15);
-    /* Soft dark red shadow */
-}
-
-.t-btn.active .t-name {
-    color: var(--accent-color);
-}
-
-.t-btn.active .t-name {
-    color: var(--accent-color);
-}
-
-/* --- CLEAN NAVBAR STYLING --- */
-.navbar {
-    padding: 20px 0;
-    background-color: transparent !important;
-    /* Forces it to be clear */
-    border: none;
-    box-shadow: none;
-}
-
-.navbar-brand {
-    color: var(--text-light) !important;
-    font-size: 1.5rem;
-    letter-spacing: 2px;
-}
-
-.nav-link {
-    color: var(--text-light) !important;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    letter-spacing: 1.5px;
-    position: relative;
-}
-
-/* Desktop Only: Stretch the nav from the middle to the right */
-@media (min-width: 992px) {
-    .custom-nav-spacing {
-        width: 55%;
-        display: flex;
-        justify-content: space-between;
-    }
-}
-
-.nav-link::after {
-    content: '';
-    position: absolute;
+.preloader-fill {
     width: 0;
-    height: 1px;
-    bottom: 0;
-    left: 0;
-    background-color: var(--accent-color);
-    transition: width 0.3s ease;
+    animation: preloaderBar 1.4s cubic-bezier(.4,0,.2,1) forwards;
 }
 
-.nav-link:hover::after,
-.nav-link.active::after {
-    width: 100%;
+@keyframes preloaderIn {
+    from { opacity: 0; letter-spacing: 20px; }
+    to   { opacity: 1; }
 }
 
-/* Desktop Only: Stretch the nav from the middle to the right */
-@media (min-width: 992px) {
-    .custom-nav-spacing {
-        width: 55%;
-        /* Takes up roughly half the screen */
-        display: flex;
-        justify-content: space-between;
-        /* Spaces the links evenly */
-    }
+@keyframes preloaderBar { to { width: 100%; } }
+
+/* ── HERO ──────────────────────────────────── */
+.scanlines {
+    background: repeating-linear-gradient(
+        0deg,
+        transparent, transparent 2px,
+        rgba(0,0,0,.025) 2px, rgba(0,0,0,.025) 4px
+    );
+    pointer-events: none;
 }
 
-/* Navbar Link Hover Animation */
-.nav-link::after {
-    content: '';
+.film-corner {
     position: absolute;
-    width: 0;
-    height: 1px;
-    bottom: 0;
-    left: 0;
-    background-color: var(--accent-color);
-    transition: width 0.3s ease;
+    width: 36px;
+    height: 36px;
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0;
+    animation: filmCornersIn .8s ease 2.4s forwards;
 }
 
-.nav-link:hover::after,
-.nav-link.active::after {
-    width: 100%;
+@keyframes filmCornersIn { to { opacity: 1; } }
+
+.film-corner--tl { top: 28px; left: 28px; border-top: 1px solid rgba(139,0,0,.8); border-left: 1px solid rgba(139,0,0,.8); }
+.film-corner--tr { top: 28px; right: 28px; border-top: 1px solid rgba(139,0,0,.8); border-right: 1px solid rgba(139,0,0,.8); }
+.film-corner--bl { bottom: 28px; left: 28px; border-bottom: 1px solid rgba(139,0,0,.8); border-left: 1px solid rgba(139,0,0,.8); }
+.film-corner--br { bottom: 28px; right: 28px; border-bottom: 1px solid rgba(139,0,0,.8); border-right: 1px solid rgba(139,0,0,.8); }
+
+#heroEyebrow, #heroTitle, #heroSub, #heroCta, #scrollHint {
+    opacity: 0;
+    transform: translateY(24px);
 }
 
-
-
-
-/* --- MOBILE MENU DROPDOWN SHADOW & STYLING --- */
-@media (max-width: 991px) {
-    .navbar-collapse {
-        background-color: var(--bg-dark);
-        /* Uses your logo grey */
-        padding: 20px;
-        margin-top: 15px;
-        border-radius: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-
-        /* The cinematic shadow you asked for */
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
-    }
-
-    /* Spacing out the links so they are easier to tap */
-    .navbar-nav .nav-link {
-        padding: 12px 0;
-        font-size: 1rem;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    /* Remove border from the last link */
-    .navbar-nav .nav-item:last-child .nav-link {
-        border-bottom: none;
-    }
-}
-
-/* Optional: Remove the ugly default Bootstrap border around the burger button when clicked */
-.navbar-toggler:focus {
-    box-shadow: none;
-}
-
-
-
-
-/* --- EXACT PORTFOLIO DROPDOWN DESIGN --- */
-
-/* Desktop Logic: Open on Hover */
-@media (min-width: 992px) {
-    .custom-portfolio-dropdown:hover .custom-drop-menu {
-        display: block;
-        margin-top: 0;
-    }
-}
-
-/* The Dropdown Box (Dark Red + Border) */
-.custom-drop-menu {
-    background-color: #8B0000 !important;
-    /* Dark Red */
-    border: 1px solid #ffffff !important;
-    /* White Border Line */
-    border-radius: 4px;
-    padding: 0;
-    /* Removed padding so hover background touches the edges */
+/* Scroll line indicator */
+.scroll-line-wrap {
+    width: 1px;
+    height: 44px;
+    background: rgba(255,255,255,.1);
     overflow: hidden;
+    margin: 0 auto;
 }
 
-/* The Text Inside (White) */
-.custom-drop-menu .dropdown-item {
-    color: #ffffff !important;
-    /* White Text */
-    font-size: 0.85rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 12px 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    /* Subtle line between items */
-    transition: all 0.2s ease;
-}
-
-/* Remove border from the last item so it looks clean */
-.custom-drop-menu li:last-child .dropdown-item {
-    border-bottom: none;
-}
-
-/* THE HOVER EFFECT (Grey BG + Black Text) */
-.custom-drop-menu .dropdown-item:hover,
-.custom-drop-menu .dropdown-item:focus {
-    background-color: #cccccc !important;
-    /* Grey Background */
-    color: #000000 !important;
-    /* Black Text */
-}
-
-
-
-
-
-/* --- HERO SECTION --- */
-.hero-section {
-    height: 100vh;
-    position: relative;
-    /* Temporary online cinematic image */
-    background: url('https://png.pngtree.com/thumb_back/fh260/background/20240402/pngtree-behind-the-scenes-of-videographer-or-photographer-shooting-video-or-movie-image_15648497.jpg') center center / cover no-repeat;
-}
-
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
+.scroll-line-fill {
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    /* Darkens the image */
-    z-index: 0;
+    background: #8B0000;
+    animation: scrollDrop 2s ease infinite;
 }
 
-.hero-title {
-    letter-spacing: 3px;
-    text-shadow: 0px 4px 15px rgba(0, 0, 0, 0.9);
-    color: var(--text-light);
-     /* Strong shadow for cinematic impact */
+@keyframes scrollDrop {
+    0%   { transform: translateY(-100%); }
+    100% { transform: translateY(200%); }
 }
 
-.hero-subtitle {
-    letter-spacing: 2px;
-    text-shadow: 0px 2px 10px rgba(0, 0, 0, 0.8);
-    color: var(--text-light);
-     /* Subtle shadow for readability */
+/* ── MARQUEE ───────────────────────────────── */
+.marquee-track {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    white-space: nowrap;
+    animation: marqueeScroll 22s linear infinite;
 }
 
-/* --- CTA BUTTON --- */
+.marquee-item {
+    font-family: 'Montserrat', sans-serif;
+    font-size: .65rem;
+    font-weight: 600;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.25);
+    flex-shrink: 0;
+}
+
+.marquee-sep { font-size: .45rem; flex-shrink: 0; }
+
+@keyframes marqueeScroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* ── CTA BUTTON ────────────────────────────── */
 .cta-btn {
     display: inline-block;
-    padding: 15px 40px;
-    border: 1px solid var(--accent-color);
-    color: var(--text-light);
+    padding: 16px 52px;
+    border: 1px solid #8B0000;
+    color: #fff;
     text-transform: uppercase;
     text-decoration: none;
-    font-weight: 400;
-    letter-spacing: 2px;
+    font-weight: 500;
+    font-size: .7rem;
+    letter-spacing: 3px;
     background: transparent;
-    transition: all 0.3s ease-in-out;
     position: relative;
     overflow: hidden;
+    transition: color .4s ease, box-shadow .4s ease;
+    font-family: 'Montserrat', sans-serif;
 }
 
-/* Button Hover Animation */
-.cta-btn:hover {
-    background: var(--accent-color);
-    color: #ffffff;
-    border-color: var(--accent-color);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(139, 0, 0, 0.4);
-    /* Dark blood red glow */
+.cta-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #8B0000;
+    transform: translateX(-101%);
+    transition: transform .4s cubic-bezier(.25,.46,.45,.94);
+    z-index: -1;
 }
 
+.cta-btn:hover { box-shadow: 0 0 35px rgba(139,0,0,.35); }
+.cta-btn:hover::before { transform: translateX(0); }
 
-
-/* --- THE NEXT ERA SECTION --- */
-:root {
-    /* Set to your dark theme color to blend in, or #b0987c to match the screenshot */
-    --wall-bg-color: #0a0a0a;
-}
-
-.next-era-section {
-    padding: 80px 0;
-    /* Shorter section length */
-    background-color: var(--wall-bg-color);
-    color: #ffffff;
-}
-
-/* The Image Block */
+/* ── PRISON WALL ───────────────────────────── */
 .prison-wall-container {
-    width: 280px;
-    /* Width of the whole image block */
-    height: 400px;
-    /* Height of the block */
-
-    /* Placeholder cinematic portrait */
-    background-image: url('https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=1000&auto=format&fit=crop');
+    width: 260px;
+    height: 380px;
+    background-image: url('WEBSITE_MEDIA/Next_Era.png');
     background-size: cover;
     background-position: center;
-
-    /* This creates the true parallax "looking through a window" effect */
     background-attachment: fixed;
-
-    /* Flexbox automatically spaces our 3 wall bars evenly */
     display: flex;
     justify-content: space-evenly;
 }
 
-/* The solid bars that cover the image */
 .wall-bar {
-    width: 25px;
-    /* Thickness of the wall between the image slits */
+    width: 24px;
     height: 100%;
-    background-color: var(--wall-bg-color);
-    /* MUST match section bg to look like a wall */
+    background-color: #0a0a0a;
 }
 
-/* Typography matching the screenshot */
-.next-era-title {
-    font-family: var(--font-main);
-    font-weight: 700;
-    font-size: 2.5rem;
-    letter-spacing: 1px;
-}
-
-.next-era-text {
-    font-family: var(--font-main);
-    max-width: 900px;
-    /* Keeps text from stretching too wide */
-    font-weight: 300;
-    line-height: 1.8;
-    font-size: 1rem;
-    color: #e0e0e0;
-}
-
-/* Mobile adjustment */
 @media (max-width: 768px) {
-    .prison-wall-container {
-        background-attachment: scroll;
-        /* Disables parallax on mobile for better performance */
-    }
-
-    .next-era-title {
-        font-size: 2rem;
-    }
+    .prison-wall-container { background-attachment: scroll; }
 }
 
-/* --- SERVICES SECTION (Focus Pull Cards) --- */
-.services-section {
-    background-color: var(--bg-light);
-    /* Keeps it seamlessly dark */
-}
-.services-section h2 {
-    font-family: var(--font-main);
-    font-size: 2.5rem;
-    letter-spacing: 1px;
-    color: black;
-    /* Dark blood red glow */
-}
-
+/* ── SERVICE CARDS ─────────────────────────── */
 .cinematic-card {
-    height: 400px;
+    height: 420px;
     position: relative;
     background-size: cover;
     background-position: center;
-    border-radius: 4px;
     overflow: hidden;
     cursor: pointer;
-    /* The "Out of Focus" camera effect */
-    filter: grayscale(80%) blur(2px);
-    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    filter: grayscale(70%) brightness(.65);
+    transition: filter .6s ease, transform .6s ease, box-shadow .6s ease;
 }
 
 .card-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.2) 100%);
-    transition: all 0.5s ease;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,.95) 0%, rgba(0,0,0,.3) 55%, rgba(0,0,0,.05) 100%);
+    transition: background .5s ease;
 }
 
 .card-content {
@@ -386,211 +172,93 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 30px 20px;
+    padding: 28px 24px;
     z-index: 2;
-    transform: translateY(40px);
-    /* Pushes the paragraph text down out of view */
-    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translateY(52px);
+    transition: transform .5s cubic-bezier(.25,.46,.45,.94);
 }
 
-.card-text {
-    color: #d1d1d1;
-    font-size: 0.9rem;
-    line-height: 1.6;
+.card-text, .card-cta {
     opacity: 0;
-    /* Hidden by default */
-    transition: all 0.5s ease;
-    margin-top: 10px;
+    transition: opacity .4s ease .1s;
 }
 
-/* --- THE HOVER ANIMATION (Camera snaps into focus) --- */
 .cinematic-card:hover {
-    filter: grayscale(0%) blur(0px);
-    /* Snaps into full color and sharp focus */
-    transform: translateY(-10px);
-    /* Slight lift */
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.8);
+    filter: grayscale(0%) brightness(1);
+    transform: translateY(-6px);
+    box-shadow: 0 24px 60px rgba(0,0,0,.8), 0 0 0 1px rgba(139,0,0,.25);
 }
 
-.cinematic-card:hover .card-overlay {
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.0) 100%);
-}
+.cinematic-card:hover .card-content { transform: translateY(0); }
+.cinematic-card:hover .card-text,
+.cinematic-card:hover .card-cta { opacity: 1; }
 
-.cinematic-card:hover .card-content {
-    transform: translateY(0);
-    /* Text slides up into place */
-}
-
-.cinematic-card:hover .card-text {
-    opacity: 1;
-    /* Text fades in */
-}
-
-/* --- OUR VISION SECTION (Cinematic Spotlight Typography) --- */
-.vision-section {
-    min-height: 60vh;
-    background-color: #050505;
-    /* Deepest black for drama */
-    border-top: 1px solid rgba(255, 255, 255, 0.02);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
-}
-
-.vision-statement {
-    color: #666;
-    /* Starts dark/muted */
-    font-family: var(--font-main);
-    font-size: 2.5rem;
-    line-height: 1.5;
-    transition: color 0.8s ease, text-shadow 0.8s ease;
-    cursor: default;
-}
-
-/* When the user hovers over the section, the text "illuminates" */
-.vision-section:hover .vision-statement {
-    color: #e0e0e0;
-    text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
-}
-
-/* Mobile Adjustments */
 @media (max-width: 768px) {
-    .vision-statement {
-        font-size: 1.8rem;
-    }
-
-    .cinematic-card {
-        filter: grayscale(0%) blur(0px);
-        /* Remove blur on mobile so it's readable immediately */
-    }
-
-    .card-content {
-        transform: translateY(0);
-    }
-
-    .card-text {
-        opacity: 1;
-    }
+    .cinematic-card { filter: grayscale(0%) brightness(.85); }
+    .cinematic-card .card-content { transform: translateY(0); }
+    .cinematic-card .card-text,
+    .cinematic-card .card-cta { opacity: 1; }
 }
 
-
-
-/* --- OUR VISION SECTION --- */
-.vision-section {
-    min-height: 70vh;
-    border-top: 1px solid rgba(255, 255, 255, 0.03);
-    background-color: var(--bg-dark);
-}
+/* ── VISION ────────────────────────────────── */
+.vision-section { min-height: 65vh; background: #050505; }
 
 .vision-bg {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('https://images.unsplash.com/photo-1485095329183-d0797cdc5676?q=80&w=2070&auto=format&fit=crop') center center / cover no-repeat;
-
-    /* Reduced time from 25s to 12s so the zoom is WAY more noticeable */
-    animation: cinematicZoom 12s alternate infinite ease-in-out;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1485095329183-d0797cdc5676?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+    animation: cinematicZoom 14s alternate infinite ease-in-out;
     z-index: 0;
 }
 
-/* Increased the zoom scale so it travels further */
 @keyframes cinematicZoom {
-    0% {
-        transform: scale(1);
-    }
-
-    100% {
-        transform: scale(1.35);
-    }
+    0%   { transform: scale(1); }
+    100% { transform: scale(1.22); }
 }
 
 .vision-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(10, 10, 10, 0.4) 0%, rgba(5, 5, 5, 0.95) 100%);
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(10,10,10,.55) 0%, rgba(5,5,5,.97) 100%);
     z-index: 1;
 }
 
-.vision-text {
-    text-shadow: 0px 4px 15px rgba(0, 0, 0, 0.9);
-    letter-spacing: 1px;
-}
+.vision-highlight { text-shadow: 0 0 20px rgba(139,0,0,.5); }
 
-/* The unique style for those 3 words */
-.vision-highlight {
-    color: var(--accent-color);
-    font-weight: 700;
-    font-style: italic;
-    text-shadow: 0px 0px 15px rgba(139, 0, 0, 0.6);
-    /* Dark blood red glow */
-}
-
-/* Mobile Adjustments */
-@media (max-width: 768px) {
-    .vision-section {
-        min-height: 50vh;
-    }
-
-    .vision-text {
-        font-size: 1.4rem !important;
-    }
-
-    /* Keeps it clean on phones */
-}
-
-
-
-/* --- OUR CRAFT SECTION (Fixed UX & Images) --- */
-.craft-section {
-    width: 100%;
-    background: var(--bg-light);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
-}
-
+/* ── CRAFT SECTION ─────────────────────────── */
 .craft-container {
     display: flex;
-    height: 80vh;
+    height: 82vh;
     overflow: hidden;
-    position: relative;
 }
 
 .craft-panel {
     flex: 1;
     position: relative;
-    transition: flex 0.8s cubic-bezier(0.25, 1, 0.5, 1);
     cursor: pointer;
-    border-left: 1px solid rgba(255, 255, 255, 0.03);
-    border-right: 1px solid rgba(255, 255, 255, 0.03);
     overflow: hidden;
+    transition: flex .8s cubic-bezier(.25,1,.5,1);
 }
 
-/* Bulletproof Background Image Div */
 .craft-bg {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background-size: cover;
     background-position: center;
-    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1),
-        filter 0.8s ease,
-        opacity 0.8s ease;
     z-index: 0;
-
-    /* Initial moody desaturation */
-    filter: desaturate(80%) brightness(0.6);
+    filter: grayscale(75%) brightness(.5);
+    transition: transform .8s cubic-bezier(.25,1,.5,1), filter .8s ease;
 }
+
+.craft-bg-1 { background-image: url('WEBSITE_MEDIA/Craft_1.png'); }
+.craft-bg-2 { background-image: url('WEBSITE_MEDIA/Craft_2.png'); }
 
 .craft-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(10, 10, 10, 0.85) 0%, rgba(5, 5, 5, 0.4) 100%);
+    background: linear-gradient(135deg, rgba(10,10,10,.88) 0%, rgba(5,5,5,.35) 100%);
     z-index: 1;
-    transition: background 0.8s ease;
+    transition: background .8s ease;
 }
 
 .craft-content {
@@ -602,435 +270,170 @@ body {
     color: #fff;
 }
 
-.craft-title {
-    letter-spacing: 2px;
-    text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.8);
-}
+.craft-title { letter-spacing: 2px; text-shadow: 0 4px 12px rgba(0,0,0,.8); }
 
 .craft-desc {
-    color: #cccccc;
-    font-weight: 300;
-    line-height: 1.8;
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-    max-width: 400px;
+    transform: translateY(28px);
+    transition: opacity .6s ease, transform .6s ease;
 }
 
-/* The Mobile Hint Element */
-.mobile-hint {
-    opacity: 1;
-    transition: opacity 0.3s ease;
-}
+.mobile-hint { transition: opacity .3s ease; }
 
-/* --- THE HOVER & ACTIVE (TAP) MAGIC --- */
-/* We use :hover for desktop, and .active for mobile taps */
 .craft-panel:hover,
-.craft-panel.active {
-    flex: 1.6;
-}
+.craft-panel.active { flex: 1.75; }
 
 .craft-panel:hover .craft-bg,
 .craft-panel.active .craft-bg {
     transform: scale(1.05);
-    filter: desaturate(0%) brightness(1);
+    filter: grayscale(0%) brightness(.85);
 }
 
 .craft-panel:hover .craft-overlay,
 .craft-panel.active .craft-overlay {
-    background: linear-gradient(135deg, rgba(10, 10, 10, 0.5) 0%, rgba(5, 5, 5, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(10,10,10,.6) 0%, rgba(5,5,5,.1) 100%);
 }
 
 .craft-panel:hover .craft-desc,
 .craft-panel.active .craft-desc {
     opacity: 1;
     transform: translateY(0);
-    transition-delay: 0.1s;
+    transition-delay: .1s;
 }
 
-/* Hide the tap hint when the panel is active/open */
-.craft-panel.active .mobile-hint {
-    opacity: 0;
-    pointer-events: none;
-}
+.craft-panel.active .mobile-hint { opacity: 0; pointer-events: none; }
 
-/* Mobile Adjustments */
 @media (max-width: 768px) {
-    .craft-container {
-        flex-direction: column;
-        height: 100vh;
-    }
-
-    .craft-panel {
-        flex: 1;
-    }
-
-    /* Make the active panel take up more room on the screen */
-    .craft-panel.active {
-        flex: 1.8;
-    }
-
-    .craft-desc {
-        font-size: 0.9rem;
-    }
+    .craft-container { flex-direction: column; height: auto; }
+    .craft-panel { min-height: 50vh; flex: 1; }
+    .craft-panel.active { flex: 1.7; }
+    .craft-desc { font-size: .875rem; }
 }
 
-/* --- THE IMAGES FOR OUR CRAFT (Moved from HTML) --- */
-.craft-bg-1 {
-    background-image: url('https://images.unsplash.com/photo-1611162617474-5b21e879e113');
+@media (min-width: 769px) {
+    .craft-panel.active { flex: 1; }
 }
 
-.craft-bg-2 {
-    background-image: url('https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d');
-}
-
-
-
-
-
-
-/* --- FLOATING UI DESIGN --- */
-.testimonial-section {
-    background: var(--bg-light);
-    padding: 120px 0;
-    perspective: 1000px;
-    /* For 3D depth */
-}
-
-.testimonial-section h6 {
-    color: var(--accent-color);
-}
-
-.testimonial-section h2 span {
-    color: var(--accent-color);
-}
-
-
+/* ── TESTIMONIALS ──────────────────────────── */
 .floating-window {
-    max-width: 800px;
-    background: #ffffff;
-    border-radius: 24px;
-    border: 1px solid rgba(0, 0, 0, 0.03);
-    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.1);
-    /* Deep soft shadow */
+    max-width: 960px;
+    background: #111;
+    border: 1px solid rgba(255,255,255,.06);
+    border-radius: 16px;
     overflow: hidden;
-    animation: floatUI 6s ease-in-out infinite;
-    /* Floating animation */
+    box-shadow: 0 40px 120px rgba(0,0,0,.85);
+    animation: floatUI 8s ease-in-out infinite;
 }
 
 @keyframes floatUI {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-15px);
-    }
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-14px); }
 }
 
-/* Scrollable Tab Navigation */
 .tab-nav-wrapper {
-    background: #fafafa;
-    padding: 15px;
-    border-bottom: 1px solid #f0f0f0;
+    background: #0d0d0d;
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .tab-nav {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
+    min-width: max-content;
 }
 
 .t-btn {
     background: transparent;
-    border: 1px solid transparent;
-    padding: 8px 20px;
-    border-radius: 12px;
-    transition: all 0.3s ease;
+    border: 1px solid rgba(255,255,255,.08);
+    padding: 7px 18px;
+    border-radius: 8px;
     cursor: pointer;
-    position: relative;
+    transition: all .3s ease;
+    white-space: nowrap;
 }
 
 .t-name {
-    font-weight: 600;
-    font-size: 0.9rem;
-    color: #888;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: .78rem;
+    color: rgba(255,255,255,.38);
+    letter-spacing: .5px;
+    transition: color .3s ease;
 }
 
-.t-btn.active {
-    background: #ffffff;
-    border-color: var(--accent-color);
-    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.15);
-}
+.t-btn:hover { border-color: rgba(139,0,0,.5); }
+.t-btn:hover .t-name { color: rgba(255,255,255,.7); }
 
-.t-btn.active .t-name {
-    color: var(--accent-color);
-}
+.t-btn.active { background: #8B0000; border-color: #8B0000; box-shadow: 0 4px 20px rgba(139,0,0,.35); }
+.t-btn.active .t-name { color: #fff; }
 
-/* Body Content */
 .window-body {
-    padding: 80px 40px;
+    padding: 64px 48px;
     text-align: center;
-    min-height: 350px;
+    min-height: 290px;
     display: flex;
     align-items: center;
 }
 
-.t-pane {
-    display: none;
-    width: 100%;
-    animation: slideIn 0.5s ease;
-}
-
-.t-pane.active {
-    display: block;
-}
+.t-pane { display: none; width: 100%; animation: slideIn .4s ease; }
+.t-pane.active { display: block; }
 
 @keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+    from { opacity: 0; transform: scale(.97); }
+    to   { opacity: 1; transform: scale(1); }
 }
 
 .quote {
-    font-size: 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.15rem;
     font-style: italic;
     font-weight: 300;
-    line-height: 1.6;
-    color: #333;
-    margin-bottom: 25px;
+    line-height: 1.85;
+    color: rgba(255,255,255,.72);
+    margin-bottom: 24px;
 }
 
 .client-title {
-    font-size: 0.8rem;
-    letter-spacing: 2px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: .72rem;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    color: var(--accent-color);
+    color: #8B0000;
+    font-weight: 600;
 }
 
-/* Footer Dots (Like MacOS buttons) */
 .window-footer {
-    background: var(--accent-color);
-    padding: 10px 20px;
+    background: #0d0d0d;
+    border-top: 1px solid rgba(255,255,255,.04);
+    padding: 12px 20px;
     display: flex;
     gap: 6px;
     justify-content: flex-end;
 }
 
-.dot {
-    width: 8px;
-    height: 8px;
-    background: #ddd;
-    border-radius: 50%;
-}
-
-/* --- MOBILE STYLING (The Stylish Part) --- */
-@media (max-width: 768px) {
-    .floating-window {
-        width: 95%;
-        border-radius: 20px;
-    }
-
-    .tab-nav-wrapper {
-        overflow-x: auto;
-        white-space: nowrap;
-        justify-content: flex-start;
-        padding: 10px;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .tab-nav {
-        justify-content: flex-start;
-    }
-
-    .window-body {
-        padding: 40px 20px;
-        min-height: 280px;
-    }
-
-    .quote {
-        font-size: 1.1rem;
-    }
-
-    .t-btn {
-        padding: 6px 15px;
-    }
-}
-
-
-
-/* --- FOOTER DESIGN --- */
-.footer-section {
-    background-color: #050505;
-    /* Deep cinematic black */
-    color: #ffffff;
-    padding: 80px 0 30px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.footer-brand {
-    font-size: 1.4rem;
-    letter-spacing: 2px;
-    text-decoration: none;
-    color: #fff !important;
-}
-
-.footer-desc {
-    color: #888;
-    font-size: 0.95rem;
-    line-height: 1.8;
-    max-width: 320px;
-}
-
-.footer-heading {
-    font-size: 0.85rem;
-    letter-spacing: 3px;
-    color: #fff;
-    font-weight: 700;
-}
-
-.footer-links li {
-    margin-bottom: 12px;
-}
-
-.footer-links a {
-    color: #888;
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-}
-
-.footer-links a:hover {
-    color: var(--accent-color);
-    padding-left: 5px;
-}
-
-/* Social Icons Styling */
-.social-icons {
-    display: flex;
-    gap: 15px;
-    justify-content: flex-start;
-}
-
-@media (min-width: 992px) {
-    .social-icons {
-        justify-content: flex-end;
-    }
-}
-
-.social-link {
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.05);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    color: #fff;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.social-link:hover {
-    background: var(--accent-color);
-    color: #ffffff;
-    transform: translateY(-5px);
-    border-color: var(--accent-color);
-}
-
-.footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-}
-
-/* Mobile Tweak */
-@media (max-width: 768px) {
-    .footer-section {
-        text-align: left;
-        padding: 60px 0 20px;
-    }
-}
-
-
-
-
-
-
-
-/* --- BULLETPROOF BACK TO TOP BUTTON --- */
-.back-to-top {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    background-color: var(--accent-color);
-    /* Dark Blood Red */
-    color: #ffffff;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 99999;
-    /* Maximum z-index */
-
-    /* Hidden by default */
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(20px);
-    transition: all 0.3s ease;
-
-    /* Dark red shadow */
-    box-shadow: 0 4px 15px rgba(139, 0, 0, 0.4);
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Sizing the SVG arrow */
-.back-to-top svg {
-    width: 24px;
-    height: 24px;
-}
-
-/* The class JS adds when scrolling */
-.back-to-top.show {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
-}
-
-.back-to-top:hover {
-    background-color: #ffffff;
-    color: var(--accent-color);
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(139, 0, 0, 0.6);
-}
+.dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot:nth-child(1) { background: #8B0000; }
+.dot:nth-child(2) { background: rgba(255,255,255,.15); }
+.dot:nth-child(3) { background: rgba(255,255,255,.07); }
 
 @media (max-width: 768px) {
-    .back-to-top {
-        bottom: 20px;
-        right: 20px;
-        width: 45px;
-        height: 45px;
-    }
+    .window-body { padding: 40px 20px; min-height: 240px; }
+    .quote { font-size: .95rem; }
 }
 
+/* ── CTA SECTION ───────────────────────────── */
+.cta-section { background: #0a0a0a; }
 
-/* Prevent the 'active' click class from ruining desktop hover */
-@media (min-width: 769px) {
-    .craft-panel.active {
-        flex: 1;
-        /* Resets it so only :hover handles desktop */
-    }
+.cta-bg {
+    position: absolute;
+    inset: 0;
+    background: url('WEBSITE_MEDIA/Index_Hero.png') center/cover no-repeat;
+    opacity: .1;
+    z-index: 0;
 }
+
+/* ── STAT NUMBERS ──────────────────────────── */
+.stat-number { font-family: 'Montserrat', sans-serif; line-height: 1; }

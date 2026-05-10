@@ -1,315 +1,56 @@
-/* --- COLOR VARIABLES & BASICS --- */
-:root {
-  --bg-dark: #2c2c2c;       /* The Logo Grey */
-  --accent-color: #8b0000;  /* Deep Dark Blood Red */
-  --text-light: #ffffff;
-  --font-main: 'Montserrat', sans-serif;
-  --wall-bg-color: #2c2c2c; 
-}
+/* === COMMERCIALS & MOVIE MAKING — DARK CINEMATIC === */
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: var(--font-main);
-  background-color: var(--bg-dark);
-  color: var(--text-light);
-}
+body { font-family: 'Montserrat', sans-serif; background: #0a0a0a; color: #fff; margin: 0; padding: 0; }
 
-/* Global Text Colors */
-.accent-text, .accent-text-gold { color: var(--accent-color); }
+/* Bootstrap overrides */
+.text-dark       { color: #f0f0f0 !important; }
+.text-muted-dark { color: rgba(255,255,255,0.52) !important; }
+.bg-white        { background-color: #0a0a0a !important; }
+.bg-light-grey   { background-color: #0f0f0f !important; }
+.border-top      { border-top: 1px solid rgba(255,255,255,0.06) !important; }
 .accent-text-red { color: #8b0000; }
-.text-dark { color: #111111 !important; }
-.text-muted-dark { color: #555555; }
 
-
-/* --- CLEAN NAVBAR STYLING --- */
-.navbar {
-  padding: 20px 0;
-  background-color: transparent !important;
-  border: none;
-  box-shadow: none;
-}
-
-.navbar-brand {
-  color: var(--text-light) !important;
-  font-size: 1.5rem;
-  letter-spacing: 2px;
-}
-
-.nav-link {
-  color: var(--text-light) !important;
-  text-transform: uppercase;
-  font-size: 0.85rem;
-  letter-spacing: 1.5px;
-  position: relative;
-}
-
-@media (min-width: 992px) {
-  .custom-nav-spacing {
-    width: 55%; 
-    display: flex;
-    justify-content: space-between; 
-  }
-}
-
-.nav-link::after {
-  content: ''; position: absolute; width: 0; height: 1px; bottom: 0; left: 0;
-  background-color: var(--accent-color); transition: width 0.3s ease;
-}
-
-.nav-link:hover::after, .nav-link.active::after { width: 100%; }
-
-/* --- DARK SOLID NAVBAR (For Light Pages) --- */
-.navbar-solid-dark {
-  background-color: #2c2c2c !important; 
-  border-bottom: 2px solid #8B0000; 
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); 
-  padding: 15px 0; 
-  transition: all 0.3s ease;
-}
-
-.navbar-solid-dark .nav-link,
-.navbar-solid-dark .navbar-brand {
-  color: #ffffff !important;
-}
-
-.navbar-solid-dark .navbar-toggler-icon { filter: invert(1); }
-
-/* --- MOBILE MENU DROPDOWN SHADOW --- */
-@media (max-width: 991px) {
-  .navbar-collapse {
-    background-color: var(--bg-dark);
-    padding: 20px; margin-top: 15px; border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7); 
-  }
-  .navbar-nav .nav-link {
-    padding: 12px 0; font-size: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  }
-  .navbar-nav .nav-item:last-child .nav-link { border-bottom: none; }
-}
-
-.navbar-toggler:focus { box-shadow: none; }
-
-/* --- EXACT PORTFOLIO DROPDOWN DESIGN --- */
-@media (min-width: 992px) {
-  .custom-portfolio-dropdown:hover .custom-drop-menu { display: block; margin-top: 0; }
-}
-
-.custom-drop-menu {
-  background-color: #8B0000 !important; border: 1px solid #ffffff !important;
-  border-radius: 4px; padding: 0; overflow: hidden;
-}
-
-.custom-drop-menu .dropdown-item {
-  color: #ffffff !important; font-size: 0.85rem; letter-spacing: 1px;
-  text-transform: uppercase; padding: 12px 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3); transition: all 0.2s ease;
-}
-
-.custom-drop-menu li:last-child .dropdown-item { border-bottom: none; }
-
-.custom-drop-menu .dropdown-item:hover,
-.custom-drop-menu .dropdown-item:focus {
-  background-color: #cccccc !important; color: #000000 !important;
-}
-
-
-/* --- GLOBAL LIGHT PORTFOLIO SETTINGS --- */
-.case-studies-light { background-color: #f4f4f5; }
-.client-grid-light { background-color: #e5e5e5; border-top: 1px solid #d0d0d0; }
-
-/* --- LIGHT PORTFOLIO HERO --- */
+/* ── HERO ── */
 .portfolio-hero-light {
-  height: 60vh; position: relative;
-  background: url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=2000&auto=format&fit=crop') center center / cover no-repeat;
-  border-bottom: 2px solid #8b0000;
+  height: 65vh; position: relative; overflow: hidden;
 }
-
 .portfolio-overlay-light {
   position: absolute; inset: 0;
-  background: linear-gradient(to bottom, rgba(244,244,245,0.7) 0%, rgba(244,244,245,1) 100%);
+  background: linear-gradient(160deg, rgba(0,0,0,0.55) 0%, rgba(10,10,10,0.94) 100%);
   z-index: 0;
 }
 
-/* --- CASE STUDY TEXT & BOXES --- */
-.case-study-row-light { border-bottom: 1px solid #e0e0e0; }
-.case-study-row-light:last-child { border-bottom: none; }
+/* ── STACKED SECTIONS ── */
+.portfolio-stacked-section { background: #0a0a0a; }
+.portfolio-stacked-section.bg-light-grey { background: #0f0f0f !important; }
 
-.stats-box-light {
-  background: #ffffff; border-left: 4px solid #8b0000; padding: 15px 20px;
-  border-radius: 0 4px 4px 0; display: inline-block; box-shadow: 0 10px 20px rgba(0,0,0,0.03);
-}
-
-/* --- THE SILVER iPHONE FRAMES --- */
-.phone-frame-silver {
-  width: 260px; height: 520px; background-color: #f9f9f9; border: 8px solid #ffffff;
-  border-radius: 40px; position: relative; overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1); transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  cursor: pointer;
-}
-
-.phone-frame-silver:hover {
-  transform: translateY(-10px) scale(1.02); border-color: #f0f0f0;
-  box-shadow: 0 30px 50px rgba(0,0,0,0.15), 0 0 25px rgba(139, 0, 0, 0.15); 
-}
-
-.phone-notch-silver {
-  position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 25px;
-  background-color: #ffffff; border-radius: 0 0 15px 15px; z-index: 10;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: background-color 0.4s ease;
-}
-
-.phone-media {
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; 
-  z-index: 1; transition: transform 0.4s ease, filter 0.4s ease;
-}
-
-.phone-frame-silver:hover .phone-media { transform: scale(1.05); filter: brightness(0.6); }
-
-.play-btn-red {
-  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-  width: 60px; height: 60px; background-color: #8b0000; border: 3px solid #ffffff; 
-  border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  color: #fff; font-size: 1.5rem; padding-left: 4px; z-index: 5;
-  box-shadow: 0 10px 20px rgba(139, 0, 0, 0.3); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.phone-frame-silver:hover .play-btn-red {
-  transform: translate(-50%, -50%) scale(1.15); background-color: #111111; border-color: #8b0000;
-  color: #8b0000; box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-}
-
-.phone-overlay-text-light {
-  position: absolute; bottom: 20px; left: 20px; right: 20px;
-  display: flex; flex-direction: column; z-index: 5;
-}
-
-.views-dark { color: #111111; font-size: 1.5rem; font-weight: 800; margin-bottom: 5px; }
-.client-name-dark { color: #555555; font-size: 0.85rem; letter-spacing: 1px; font-weight: 600; }
-
-@media (max-width: 992px) {
-  .phone-frame-silver { width: 100%; height: 400px; }
-  .phone-frame-silver.mt-5 { margin-top: 0 !important; }
-  .d-flex.gap-4 { flex-direction: column; }
-}
-
-
-/* --- REUSABLE SPLIT BLOCKS --- */
-.portfolio-split-block { background-color: #ffffff; }
-.bg-light-grey { background-color: #f8f9fa; }
-
+/* ── CINEMATIC IMAGE WRAPPER ── */
 .cinematic-image-wrapper {
-  position: relative; border-radius: 16px; overflow: hidden;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08); transition: transform 0.4s ease, box-shadow 0.4s ease;
+  position: relative; border-radius: 10px; overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.55);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
-
-.cinematic-rounded-img {
-  width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; display: block;
-}
-
 .cinematic-image-wrapper:hover {
-  transform: translateY(-5px); box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+  transform: translateY(-5px);
+  box-shadow: 0 30px 70px rgba(0,0,0,0.68), 0 0 20px rgba(139,0,0,0.08);
 }
 
-.btn-outline-red {
-  display: inline-block; padding: 12px 30px; color: #8B0000; border: 2px solid #8B0000;
-  border-radius: 4px; text-transform: uppercase; font-weight: 600; letter-spacing: 1px;
-  text-decoration: none; font-size: 0.85rem; transition: all 0.3s ease;
-}
-
-.btn-outline-red:hover {
-  background-color: #8B0000; color: #ffffff; box-shadow: 0 8px 20px rgba(139, 0, 0, 0.2);
-}
-
-
-/* --- CLIENT LOGO IMAGES --- */
-.client-logo-wrapper {
-  height: 100px; background: #ffffff; border: 1px solid #dddddd; border-radius: 8px;
-  display: flex; align-items: center; justify-content: center; padding: 20px; 
-  box-shadow: 0 4px 10px rgba(0,0,0,0.02); transition: all 0.3s ease;
-}
-
-.client-logo-img {
-  max-width: 100%; max-height: 100%; object-fit: contain; 
-  filter: grayscale(100%) opacity(60%); transition: all 0.4s ease;
-}
-
-.client-logo-wrapper:hover {
-  transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); border-color: #cccccc;
-}
-
-.client-logo-wrapper:hover .client-logo-img { filter: grayscale(0%) opacity(100%); }
-
-
-/* --- FOOTER DESIGN --- */
-.footer-section {
-  background-color: #050505; color: #ffffff; padding: 80px 0 30px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.footer-brand { font-size: 1.4rem; letter-spacing: 2px; text-decoration: none; color: #fff !important; }
-.footer-desc { color: #888; font-size: 0.95rem; line-height: 1.8; max-width: 320px; }
-.footer-heading { font-size: 0.85rem; letter-spacing: 3px; color: #fff; font-weight: 700; }
-.footer-links li { margin-bottom: 12px; }
-.footer-links a { color: #888; text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease; }
-.footer-links a:hover { color: var(--accent-color); padding-left: 5px; }
-
-.social-icons { display: flex; gap: 15px; justify-content: flex-start; }
-@media (min-width: 992px) { .social-icons { justify-content: flex-end; } }
-
-.social-link {
-  width: 40px; height: 40px; background: rgba(255,255,255,0.05); display: flex;
-  align-items: center; justify-content: center; border-radius: 50%; color: #fff;
-  text-decoration: none; transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.1);
-}
-
-.social-link:hover {
-  background: var(--accent-color); color: #ffffff; transform: translateY(-5px); border-color: var(--accent-color);
-}
-
-.footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.05); font-size: 0.8rem; letter-spacing: 1px; }
-
-@media (max-width: 768px) { .footer-section { text-align: left; padding: 60px 0 20px; } }
-
-
-/* --- BULLETPROOF BACK TO TOP BUTTON --- */
-.back-to-top {
-  position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px;
-  background-color: var(--accent-color); color: #ffffff; border: none; border-radius: 50%;
-  cursor: pointer; z-index: 99999; opacity: 0; pointer-events: none; 
-  transform: translateY(20px); transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(139, 0, 0, 0.4); 
-  display: flex; align-items: center; justify-content: center;
-}
-
-.back-to-top svg { width: 24px; height: 24px; }
-.back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
-
-.back-to-top:hover {
-  background-color: #ffffff; color: var(--accent-color); transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(139, 0, 0, 0.6);
-}
-
-@media (max-width: 768px) { .back-to-top { bottom: 20px; right: 20px; width: 45px; height: 45px; } }
-
-
-
-/* --- STACKED GALLERY IMAGES --- */
 .gallery-img-tall {
-  width: 100%;
-  height: 450px; /* Forces images/posters to be the same height */
-  object-fit: cover;
-  display: block;
+  width: 100%; height: 450px; object-fit: cover; display: block;
 }
-
 .gallery-img-wide {
-  width: 100%;
-  aspect-ratio: 16 / 9; /* Perfect wide rectangle for the 9-image grid */
-  object-fit: cover;
-  display: block;
+  width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block;
 }
 
-/* Adds a nice clean top border to separate the white/grey sections */
-.border-top {
-  border-top: 1px solid #e5e5e5 !important;
+/* ── CLIENT/BRAND LOGO IMAGES ── */
+.img-fluid {
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+.cinematic-image-wrapper img,
+section img.img-fluid {
+  filter: brightness(0.75);
+}
+.cinematic-image-wrapper:hover img,
+section .col-md-6:hover img.img-fluid {
+  filter: brightness(1);
 }

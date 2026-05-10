@@ -1,221 +1,309 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>B.NEXA Production</title>
-    <link rel="stylesheet" href="home.css">
+    <title>B.NEXA Production — Cinematic Storytelling</title>
+    <meta name="description" content="B.NEXA Production — A visionary cinematic production agency crafting stories that inspire, connect, and leave a lasting impression.">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Montserrat', 'sans-serif'] },
+                    colors: {
+                        'brand-red': '#8B0000',
+                        'brand-dark': '#0a0a0a',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="shared.css">
+    <link rel="stylesheet" href="home.css">
 </head>
 
-<body>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<body class="bg-[#0a0a0a] text-white font-sans overflow-x-hidden">
 
-    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
-        <div class="container-fluid px-4 px-lg-5">
-            <a class="navbar-brand text-uppercase fw-bold" href="home.html">B.NEXA <span
-                    class="accent-text">Production</span></a>
+    <!-- Grain Overlay -->
+    <div class="grain-overlay" aria-hidden="true"></div>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+    <!-- Scroll Progress -->
+    <div id="scrollProgress" class="scroll-progress" aria-hidden="true"></div>
+
+    <!-- Custom Cursor -->
+    <div id="cursorDot" class="cursor-dot" aria-hidden="true"></div>
+    <div id="cursorRing" class="cursor-ring" aria-hidden="true"></div>
+
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 bg-[#0a0a0a] z-[9998] flex flex-col items-center justify-center">
+        <div class="preloader-logo text-center">
+            <p class="text-white font-black text-3xl md:text-4xl tracking-[8px] uppercase">
+                B.NEXA <span class="text-[#8B0000]">Production</span>
+            </p>
+        </div>
+        <div class="mt-8 w-40 h-[1px] bg-white/10 overflow-hidden">
+            <div class="preloader-fill h-full bg-[#8B0000]"></div>
+        </div>
+    </div>
+
+    <!-- ═══════════════ NAVBAR ═══════════════ -->
+    <nav id="mainNav" class="site-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand"><img src="WEBSITE_MEDIA/1.png" alt="B.NEXA Production" class="nav-logo"></a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-item-link">Home</a></li>
+                <li class="nav-has-dropdown">
+                    <a href="#" class="nav-item-link">Our Portfolio <i class="fa-solid fa-chevron-down"></i></a>
+                    <div class="nav-dropdown">
+                        <a href="Social-Media-Content-Production.html">Social Media Content</a>
+                        <a href="Event-Coverage-And-Documentaries.html">Event Coverage & Docs</a>
+                        <a href="Commercials-And-Movie-Making.html">Commercials & Film</a>
+                    </div>
+                </li>
+                <li><a href="how-we-work.html" class="nav-item-link">How We Work</a></li>
+                <li><a href="contact.html" class="nav-item-link">Contact</a></li>
+            </ul>
+            <button class="nav-burger" id="mobileMenuBtn" aria-label="Menu">
+                <span></span><span></span><span></span>
             </button>
-
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto custom-nav-spacing">
-                    <li class="nav-item"><a class="nav-link active" href="home.html">Home</a></li>
-
-                    <li class="nav-item dropdown custom-portfolio-dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="portfolioDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Our Portfolio
-                        </a>
-                        <ul class="dropdown-menu custom-drop-menu" aria-labelledby="portfolioDropdown">
-                            <li><a class="dropdown-item" href="social-media-content-production.html">SOCIAL MEDIA CONTENT PRODUCTION</a></li>
-                            <li><a class="dropdown-item" href="event-coverage-and-documentaries.html">EVENT COVERAGE AND DOCUMENTARIES</a></li>
-                            <li><a class="dropdown-item" href="commercials-and-movie-making.html">COMMERCIALS AND MOVIE MAKING</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="how-we-work.html">How we work</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                </ul>
-            </div>
+        </div>
+        <div class="nav-mobile" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="Social-Media-Content-Production.html">Social Media Content</a>
+            <a href="Event-Coverage-And-Documentaries.html">Event Coverage</a>
+            <a href="Commercials-And-Movie-Making.html">Commercials & Film</a>
+            <a href="how-we-work.html">How We Work</a>
+            <a href="contact.html">Contact</a>
         </div>
     </nav>
 
-    <header class="hero-section">
-        <div class="hero-overlay"></div>
-        <div
-            class="container h-100 d-flex flex-column justify-content-center align-items-center text-center position-relative z-1">
-            <h1 class="display-1 fw-bold text-uppercase hero-title">Cinematic Stories.<br><span class="accent-text">Real
-                    Impact.</span></h1>
-            <p class="lead mt-3 mb-5 fw-light hero-subtitle">Be the Next Era of Xpression and Art.</p>
+    <!-- ═══════════════ HERO ═══════════════ -->
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0" style="background-image: url('WEBSITE_MEDIA/Index_Hero.png'); background-size: cover; background-position: center;"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/65 via-black/40 to-[#0a0a0a]"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20"></div>
+        <div class="scanlines absolute inset-0" aria-hidden="true"></div>
 
-            <a href="#next-section" class="cta-btn">Discover Our Work</a>
+        <div class="film-corner film-corner--tl" aria-hidden="true"></div>
+        <div class="film-corner film-corner--tr" aria-hidden="true"></div>
+        <div class="film-corner film-corner--bl" aria-hidden="true"></div>
+        <div class="film-corner film-corner--br" aria-hidden="true"></div>
+
+        <div class="absolute bottom-8 left-8 z-10 hidden md:block" id="filmCounter" aria-hidden="true">
+            <span class="text-white/30 text-[10px] font-mono tracking-[4px] uppercase">FRAME <span id="frameNum">0001</span></span>
+        </div>
+
+        <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
+            <p class="hero-eyebrow text-[#8B0000] text-[11px] tracking-[6px] uppercase mb-6" id="heroEyebrow">
+                Cinematic Production Agency
+            </p>
+            <h1 class="hero-title text-white font-black text-5xl md:text-7xl lg:text-8xl uppercase leading-none mb-8" id="heroTitle">
+                Cinematic<br><span class="text-[#8B0000]">Stories.</span><br>Real Impact.
+            </h1>
+            <p class="hero-sub text-white/50 text-xs md:text-sm tracking-[4px] uppercase font-light mb-12" id="heroSub">
+                Be the Next Era of Xpression and Art
+            </p>
+            <a href="#next-era" class="cta-btn" id="heroCta">Discover Our Work</a>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-10" id="scrollHint">
+            <span class="text-white/30 text-[9px] tracking-[4px] uppercase">Scroll</span>
+            <div class="scroll-line-wrap">
+                <div class="scroll-line-fill"></div>
+            </div>
         </div>
     </header>
 
-
-    <section id="next-era" class="next-era-section">
-        <div class="container text-center">
-
-            <div class="prison-wall-container mx-auto">
-                <div class="wall-bar"></div>
-                <div class="wall-bar"></div>
-                <div class="wall-bar"></div>
+    <!-- ═══════════════ STATS ═══════════════ -->
+    <section id="stats" class="bg-[#8B0000] py-14">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div data-aos="fade-up" data-aos-delay="0">
+                    <div class="stat-number text-white font-black text-5xl md:text-6xl leading-none" data-target="50" data-suffix="+">0</div>
+                    <div class="text-white/50 text-[10px] tracking-[3px] uppercase mt-3">Projects Delivered</div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-number text-white font-black text-5xl md:text-6xl leading-none" data-target="8" data-suffix="+">0</div>
+                    <div class="text-white/50 text-[10px] tracking-[3px] uppercase mt-3">Industries Served</div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-number text-white font-black text-5xl md:text-6xl leading-none" data-target="3" data-suffix="+">0</div>
+                    <div class="text-white/50 text-[10px] tracking-[3px] uppercase mt-3">Years of Excellence</div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="300">
+                    <div class="stat-number text-white font-black text-5xl md:text-6xl leading-none" data-target="100" data-suffix="%">0</div>
+                    <div class="text-white/50 text-[10px] tracking-[3px] uppercase mt-3">Client Satisfaction</div>
+                </div>
             </div>
+        </div>
+    </section>
 
-            <h2 class="next-era-title mt-5">The Next Era of Xpression</h2>
+    <!-- ═══════════════ MARQUEE ═══════════════ -->
+    <div class="bg-[#0f0f0f] border-y border-white/5 py-4 overflow-hidden">
+        <div class="marquee-track">
+            <span class="marquee-item">B.NEXA Production</span>
+            <span class="marquee-sep text-[#8B0000]">◆</span>
+            <span class="marquee-item">Cinematic Storytelling</span>
+            <span class="marquee-sep text-[#8B0000]">◆</span>
+            <span class="marquee-item">Morocco & Beyond</span>
+            <span class="marquee-sep text-[#8B0000]">◆</span>
+            <span class="marquee-item">Visionary Production</span>
+            <span class="marquee-sep text-[#8B0000]">◆</span>
+            <span class="marquee-item">B.NEXA Production</span>
+            <span class="marquee-sep text-[#8B0000]">◆</span>
+            <span class="marquee-item">Cinematic Storytelling</span>
+            <span class="marquee-sep text-[#8B0000]">◆</span>
+            <span class="marquee-item">Morocco & Beyond</span>
+            <span class="marquee-sep text-[#8B0000]">◆</span>
+            <span class="marquee-item">Visionary Production</span>
+            <span class="marquee-sep text-[#8B0000]">◆</span>
+        </div>
+    </div>
 
-            <p class="next-era-text mt-3 mx-auto">
-                <strong>B.NEXA Production</strong> (Be the Next Era of Xpression and Art) is a visionary video-making
-                and cinematography company dedicated to crafting stories that inspire, connect, and leave a lasting
-                impression. We specialize in producing cinematic social media content, event coverage, and
-                documentaries.
+    <!-- ═══════════════ NEXT ERA ═══════════════ -->
+    <section id="next-era" class="bg-[#0a0a0a] py-28 md:py-40">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="prison-wall-container mx-auto mb-16" data-aos="fade-up"></div>
+
+            <p class="text-[#8B0000] text-[11px] tracking-[6px] uppercase mb-5" data-aos="fade-up">Who We Are</p>
+            <h2 class="text-white font-black text-4xl md:text-6xl uppercase tracking-wider leading-none mb-10" data-aos="fade-up" data-aos-delay="100">
+                The Next Era of <span class="text-[#8B0000]">Xpression</span>
+            </h2>
+            <p class="text-white/45 text-base md:text-lg font-light leading-loose max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                <strong class="text-white/70 font-semibold">B.NEXA Production</strong> — Be the Next Era of Xpression and Art — is a visionary video-making and cinematography company dedicated to crafting stories that inspire, connect, and leave a lasting impression. We specialize in cinematic social media content, event coverage, and documentaries.
             </p>
-
         </div>
     </section>
 
-    </section>
-
-
-    <section id="services" class="services-section py-5">
-        <div class="container px-4 px-lg-5">
-            <div class="text-center mb-5">
-                <h6 class="text-uppercase tracking-wide accent-text" style="letter-spacing: 3px;">What We Do</h6>
-                <h2 class="display-5 fw-bold text-uppercase mb-4">Our <span
-                        class="accent-text">Services</span></h2>
+    <!-- ═══════════════ SERVICES ═══════════════ -->
+    <section id="services" class="bg-[#0f0f0f] py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <p class="text-[#8B0000] text-[11px] tracking-[6px] uppercase mb-5" data-aos="fade-up">What We Do</p>
+                <h2 class="text-white font-black text-4xl md:text-5xl uppercase tracking-wider" data-aos="fade-up" data-aos-delay="100">
+                    Our <span class="text-[#8B0000]">Services</span>
+                </h2>
             </div>
 
-            <div class="row g-4">
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="cinematic-card"
-                        style="background-image: url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop');">
-                        <div class="card-overlay"></div>
-                        <div class="card-content">
-                            <h4 class="text-uppercase fw-bold text-white mb-2">Social Media Content</h4>
-                            <p class="card-text">Cinematic strategies that give your brand authentic reach and creative
-                                power.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="cinematic-card" style="background-image: url('WEBSITE_MEDIA/Service_1.png');" data-aos="fade-up" data-aos-delay="0">
+                    <div class="card-overlay"></div>
+                    <div class="card-content">
+                        <span class="text-[#8B0000] text-[10px] tracking-[3px] uppercase font-bold">01</span>
+                        <h4 class="text-white font-bold text-lg uppercase tracking-wide mt-2 mb-3">Social Media Content</h4>
+                        <p class="card-text text-white/60 text-sm leading-relaxed">Cinematic strategies that give your brand authentic reach and creative power.</p>
+                        <div class="card-cta mt-4">
+                            <a href="Social-Media-Content-Production.html" class="text-[#8B0000] text-[10px] tracking-[2px] uppercase border-b border-[#8B0000] pb-0.5 hover:text-white hover:border-white transition-colors duration-300">View Portfolio →</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-4">
-                    <div class="cinematic-card"
-                        style="background-image: url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=800&auto=format&fit=crop');">
-                        <div class="card-overlay"></div>
-                        <div class="card-content">
-                            <h4 class="text-uppercase fw-bold text-white mb-2">Event Coverage</h4>
-                            <p class="card-text">We don't just record events; we capture the soul, energy, and emotion
-                                of the room.</p>
+                <div class="cinematic-card" style="background-image: url('WEBSITE_MEDIA/Service_2.png');" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-overlay"></div>
+                    <div class="card-content">
+                        <span class="text-[#8B0000] text-[10px] tracking-[3px] uppercase font-bold">02</span>
+                        <h4 class="text-white font-bold text-lg uppercase tracking-wide mt-2 mb-3">Event Coverage</h4>
+                        <p class="card-text text-white/60 text-sm leading-relaxed">We don't just record events — we capture the soul, energy, and emotion of the room.</p>
+                        <div class="card-cta mt-4">
+                            <a href="Event-Coverage-And-Documentaries.html" class="text-[#8B0000] text-[10px] tracking-[2px] uppercase border-b border-[#8B0000] pb-0.5 hover:text-white hover:border-white transition-colors duration-300">View Portfolio →</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-4">
-                    <div class="cinematic-card"
-                        style="background-image: url('https://images.unsplash.com/photo-1581337204873-ef36aa186caa?q=80&w=800&auto=format&fit=crop');">
-                        <div class="card-overlay"></div>
-                        <div class="card-content">
-                            <h4 class="text-uppercase fw-bold text-white mb-2">Documentaries</h4>
-                            <p class="card-text">Shaping real-world stories with precision, ensuring every frame speaks
-                                with impact.</p>
+                <div class="cinematic-card" style="background-image: url('WEBSITE_MEDIA/Service_3.png');" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-overlay"></div>
+                    <div class="card-content">
+                        <span class="text-[#8B0000] text-[10px] tracking-[3px] uppercase font-bold">03</span>
+                        <h4 class="text-white font-bold text-lg uppercase tracking-wide mt-2 mb-3">Documentaries</h4>
+                        <p class="card-text text-white/60 text-sm leading-relaxed">Shaping real-world stories with precision, ensuring every frame speaks with impact.</p>
+                        <div class="card-cta mt-4">
+                            <a href="Event-Coverage-And-Documentaries.html" class="text-[#8B0000] text-[10px] tracking-[2px] uppercase border-b border-[#8B0000] pb-0.5 hover:text-white hover:border-white transition-colors duration-300">View Portfolio →</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-4">
-                    <div class="cinematic-card"
-                        style="background-image: url('https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=800&auto=format&fit=crop');">
-                        <div class="card-overlay"></div>
-                        <div class="card-content">
-                            <h4 class="text-uppercase fw-bold text-white mb-2">Commercials & Film</h4>
-                            <p class="card-text">Transforming ideas into high-end commercial ads and immersive movie
-                                experiences.</p>
+                <div class="cinematic-card" style="background-image: url('WEBSITE_MEDIA/Service_4.png');" data-aos="fade-up" data-aos-delay="0">
+                    <div class="card-overlay"></div>
+                    <div class="card-content">
+                        <span class="text-[#8B0000] text-[10px] tracking-[3px] uppercase font-bold">04</span>
+                        <h4 class="text-white font-bold text-lg uppercase tracking-wide mt-2 mb-3">Commercials & Film</h4>
+                        <p class="card-text text-white/60 text-sm leading-relaxed">Transforming ideas into high-end commercial ads and immersive movie experiences.</p>
+                        <div class="card-cta mt-4">
+                            <a href="Commercials-And-Movie-Making.html" class="text-[#8B0000] text-[10px] tracking-[2px] uppercase border-b border-[#8B0000] pb-0.5 hover:text-white hover:border-white transition-colors duration-300">View Portfolio →</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-4">
-                    <div class="cinematic-card"
-                        style="background-image: url('https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=800&auto=format&fit=crop');">
-                        <div class="card-overlay"></div>
-                        <div class="card-content">
-                            <h4 class="text-uppercase fw-bold text-white mb-2">Brand Films</h4>
-                            <p class="card-text">Crafting the visual identity of your brand through powerful, cinematic
-                                storytelling.</p>
+                <div class="cinematic-card" style="background-image: url('WEBSITE_MEDIA/Service_5.png');" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-overlay"></div>
+                    <div class="card-content">
+                        <span class="text-[#8B0000] text-[10px] tracking-[3px] uppercase font-bold">05</span>
+                        <h4 class="text-white font-bold text-lg uppercase tracking-wide mt-2 mb-3">Brand Films</h4>
+                        <p class="card-text text-white/60 text-sm leading-relaxed">Crafting the visual identity of your brand through powerful, cinematic storytelling.</p>
+                        <div class="card-cta mt-4">
+                            <a href="Social-Media-Content-Production.html" class="text-[#8B0000] text-[10px] tracking-[2px] uppercase border-b border-[#8B0000] pb-0.5 hover:text-white hover:border-white transition-colors duration-300">View Portfolio →</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-4">
-                    <div class="cinematic-card"
-                        style="background-image: url('https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=800&auto=format&fit=crop');">
-                        <div class="card-overlay"></div>
-                        <div class="card-content">
-                            <h4 class="text-uppercase fw-bold text-white mb-2">Post-Production</h4>
-                            <p class="card-text">A seamless process blending elite editing, color grading, and final
-                                touches.</p>
+                <div class="cinematic-card" style="background-image: url('https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=800&auto=format&fit=crop');" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-overlay"></div>
+                    <div class="card-content">
+                        <span class="text-[#8B0000] text-[10px] tracking-[3px] uppercase font-bold">06</span>
+                        <h4 class="text-white font-bold text-lg uppercase tracking-wide mt-2 mb-3">Post-Production</h4>
+                        <p class="card-text text-white/60 text-sm leading-relaxed">A seamless process blending elite editing, color grading, and final touches.</p>
+                        <div class="card-cta mt-4">
+                            <a href="how-we-work.html" class="text-[#8B0000] text-[10px] tracking-[2px] uppercase border-b border-[#8B0000] pb-0.5 hover:text-white hover:border-white transition-colors duration-300">Learn More →</a>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-
-    <section id="vision"
-        class="vision-section position-relative d-flex align-items-center justify-content-center overflow-hidden">
+    <!-- ═══════════════ VISION ═══════════════ -->
+    <section id="vision" class="vision-section relative flex items-center justify-center overflow-hidden py-40">
         <div class="vision-bg"></div>
         <div class="vision-overlay"></div>
-
-        <div class="container position-relative z-1 text-center px-4">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <h6 class="text-uppercase tracking-wide accent-text mb-4">Our Vision</h6>
-
-                    <p class="fs-3 fw-light text-white lh-base vision-text">
-                        "To redefine cinematic storytelling in Morocco and beyond. We believe that every idea, no matter
-                        how small, can grow into a story that
-                        <span class="vision-highlight">inspires</span>,
-                        <span class="vision-highlight">connects</span>, and creates
-                        <span class="vision-highlight">impact</span>."
-                    </p>
-                </div>
-            </div>
+        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+            <p class="text-[#8B0000] text-[11px] tracking-[6px] uppercase mb-10" data-aos="fade-up">Our Vision</p>
+            <p class="text-white text-2xl md:text-4xl font-light leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+                "To redefine cinematic storytelling in Morocco and beyond. We believe that every idea, no matter how small, can grow into a story that
+                <em class="text-[#8B0000] font-semibold not-italic vision-highlight">inspires</em>,
+                <em class="text-[#8B0000] font-semibold not-italic vision-highlight">connects</em>, and creates
+                <em class="text-[#8B0000] font-semibold not-italic vision-highlight">impact</em>."
+            </p>
         </div>
     </section>
 
-
-
-    <section id="craft" class="craft-section pt-5">
-
-        <div class="container px-4 px-lg-5 mb-4 text-center">
-            <h6 class="text-uppercase tracking-wide accent-text" style="letter-spacing: 3px;">How We Work</h6>
-            <h2 class="display-5 fw-bold text-uppercase ">Our <span class="accent-text">Craft</span></h2>
+    <!-- ═══════════════ CRAFT ═══════════════ -->
+    <section id="craft" class="bg-[#0a0a0a] pt-24">
+        <div class="max-w-7xl mx-auto px-6 mb-14 text-center">
+            <p class="text-[#8B0000] text-[11px] tracking-[6px] uppercase mb-5" data-aos="fade-up">How We Work</p>
+            <h2 class="text-white font-black text-4xl md:text-5xl uppercase tracking-wider" data-aos="fade-up" data-aos-delay="100">
+                Our <span class="text-[#8B0000]">Craft</span>
+            </h2>
         </div>
 
         <div class="craft-container">
-
             <div class="craft-panel" onclick="toggleCraft(this)">
                 <div class="craft-bg craft-bg-1"></div>
                 <div class="craft-overlay"></div>
-
                 <div class="craft-content">
-                    <h6 class="accent-text tracking-wide mb-3 text-uppercase">01 // The Emotion</h6>
-                    <h2 class="text-uppercase fw-bold text-white mb-3 craft-title">Artistry in <br>Storytelling</h2>
-                    <p class="craft-desc">We shape each frame to carry deep meaning and authenticity, ensuring every
-                        story resonates with powerful emotion and genuine purpose.</p>
-
-                    <div class="mobile-hint d-md-none mt-3">
-                        <span class="accent-text border border-warning rounded-pill px-3 py-1 small">Tap to expand
-                            +</span>
+                    <p class="text-[#8B0000] text-[10px] tracking-[3px] uppercase mb-4">01 // The Emotion</p>
+                    <h2 class="text-white font-black text-3xl md:text-4xl uppercase tracking-wider mb-4 craft-title">Artistry in<br>Storytelling</h2>
+                    <p class="craft-desc text-white/55 text-sm font-light leading-relaxed max-w-sm">We shape each frame to carry deep meaning and authenticity, ensuring every story resonates with powerful emotion and genuine purpose.</p>
+                    <div class="mobile-hint mt-4 md:hidden">
+                        <span class="text-[#8B0000] border border-[#8B0000] rounded-full px-4 py-1 text-[10px] tracking-[2px]">Tap to expand +</span>
                     </div>
                 </div>
             </div>
@@ -223,75 +311,72 @@
             <div class="craft-panel" onclick="toggleCraft(this)">
                 <div class="craft-bg craft-bg-2"></div>
                 <div class="craft-overlay"></div>
-
                 <div class="craft-content">
-                    <h6 class="accent-text tracking-wide mb-3 text-uppercase">02 // The Execution</h6>
-                    <h2 class="text-uppercase fw-bold text-white mb-3 craft-title">Precision in <br>Production</h2>
-                    <p class="craft-desc">With a seamless process blending cinematography and elite editing, we meet the
-                        absolute highest cinematic standards on every single project.</p>
-
-                    <div class="mobile-hint d-md-none mt-3">
-                        <span class="accent-text border border-warning rounded-pill px-3 py-1 small">Tap to expand
-                            +</span>
+                    <p class="text-[#8B0000] text-[10px] tracking-[3px] uppercase mb-4">02 // The Execution</p>
+                    <h2 class="text-white font-black text-3xl md:text-4xl uppercase tracking-wider mb-4 craft-title">Precision in<br>Production</h2>
+                    <p class="craft-desc text-white/55 text-sm font-light leading-relaxed max-w-sm">With a seamless process blending cinematography and elite editing, we meet the absolute highest cinematic standards on every single project.</p>
+                    <div class="mobile-hint mt-4 md:hidden">
+                        <span class="text-[#8B0000] border border-[#8B0000] rounded-full px-4 py-1 text-[10px] tracking-[2px]">Tap to expand +</span>
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 
-
-    <section id="testimonials" class="testimonial-section py-5">
-        <div class="container position-relative">
-
-            <div class="text-center mb-5" data-aos="fade-up">
-                <h6 class="text-uppercase tracking-widest accent-text-gold mb-2">Portfolio Feedback</h6>
-                <h2 class="display-6 fw-bold text-dark">Client <span class="accent-text-gold">Stories</span></h2>
+    <!-- ═══════════════ TESTIMONIALS ═══════════════ -->
+    <section id="testimonials" class="bg-[#0a0a0a] py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <p class="text-[#8B0000] text-[11px] tracking-[6px] uppercase mb-5">Portfolio Feedback</p>
+                <h2 class="text-white font-black text-4xl md:text-5xl uppercase tracking-wider">Client <span class="text-[#8B0000]">Stories</span></h2>
             </div>
 
             <div class="floating-window mx-auto" data-aos="zoom-in">
-
                 <div class="tab-nav-wrapper">
                     <div class="tab-nav">
-                        <button class="t-btn active" onclick="openTab(event, 'c1')">
-                            <span class="t-name">Sarah J.</span>
-                            <span class="t-status"></span>
-                        </button>
-                        <button class="t-btn" onclick="openTab(event, 'c2')">
-                            <span class="t-name">Mehdi A.</span>
-                            <span class="t-status"></span>
-                        </button>
-                        <button class="t-btn" onclick="openTab(event, 'c3')">
-                            <span class="t-name">Omar T.</span>
-                            <span class="t-status"></span>
-                        </button>
-                        <button class="t-btn" onclick="openTab(event, 'c4')">
-                            <span class="t-name">Sofia R.</span>
-                            <span class="t-status"></span>
-                        </button>
+                        <button class="t-btn" onclick="openTab(event, 'c1')"><span class="t-name">BDEA Carrosserie</span></button>
+                        <button class="t-btn" onclick="openTab(event, 'c2')"><span class="t-name">Ihssane Benalluch</span></button>
+                        <button class="t-btn" onclick="openTab(event, 'c3')"><span class="t-name">One of One Events</span></button>
+                        <button class="t-btn active" onclick="openTab(event, 'c4')"><span class="t-name">School SUISSI</span></button>
+                        <button class="t-btn" onclick="openTab(event, 'c5')"><span class="t-name">LeadPill</span></button>
+                        <button class="t-btn" onclick="openTab(event, 'c6')"><span class="t-name">HI SUN MEDIA</span></button>
+                        <button class="t-btn" onclick="openTab(event, 'c7')"><span class="t-name">2PI Academy</span></button>
+                        <button class="t-btn" onclick="openTab(event, 'c8')"><span class="t-name">Ibn Tofail University</span></button>
                     </div>
                 </div>
 
                 <div class="window-body">
-                    <div id="c1" class="t-pane active">
-                        <p class="quote">"B.NEXA transformed our brand's vision into an absolute masterpiece. The
-                            cinematic quality is unmatched."</p>
-                        <h5 class="client-title">— Creative Director</h5>
+                    <div id="c4" class="t-pane active">
+                        <p class="quote">"Zainab quickly understood our vision and delivered videos that parents and students loved. We can't wait to work with her again."</p>
+                        <h5 class="client-title">— School SUISSI</h5>
+                    </div>
+                    <div id="c7" class="t-pane">
+                        <p class="quote">"She brought a fun, innovative touch to our content that really connected with our community."</p>
+                        <h5 class="client-title">— 2PI Academy</h5>
+                    </div>
+                    <div id="c6" class="t-pane">
+                        <p class="quote">"Working with Zainab was seamless. She's reliable, creative, and always delivers with a professional touch."</p>
+                        <h5 class="client-title">— HI SUN MEDIA</h5>
+                    </div>
+                    <div id="c8" class="t-pane">
+                        <p class="quote">"She turned our academic events into captivating stories. Creative, professional, and beyond expectations."</p>
+                        <h5 class="client-title">— Ibn Tofail University</h5>
+                    </div>
+                    <div id="c1" class="t-pane">
+                        <p class="quote">"They studied what we do, asked the right questions, and delivered visuals that actually made our work look the way we see it in our heads. The first time we got content we were genuinely proud to post."</p>
+                        <h5 class="client-title">— BDEA Carrosserie</h5>
                     </div>
                     <div id="c2" class="t-pane">
-                        <p class="quote">"Professionalism meets pure artistry. They didn't just cover our event; they
-                            captured the soul of it."</p>
-                        <h5 class="client-title">— Event Producer</h5>
+                        <p class="quote">"They came in with ideas, not just a camera. The content they created felt like me — not generic, not recycled. They understood the aesthetic I was going for without me having to over-explain it. That's rare."</p>
+                        <h5 class="client-title">— Ihssane Benalluch</h5>
+                    </div>
+                    <div id="c5" class="t-pane">
+                        <p class="quote">"We needed a promotional video that would actually convert. B.NEXA delivered exactly that. It became a real asset in our marketing — not just a video we posted and forgot about."</p>
+                        <h5 class="client-title">— LeadPill</h5>
                     </div>
                     <div id="c3" class="t-pane">
-                        <p class="quote">"Every frame speaks with purpose. Their storytelling ability sets them apart
-                            from every other production house."</p>
-                        <h5 class="client-title">— Brand Founder</h5>
-                    </div>
-                    <div id="c4" class="t-pane">
-                        <p class="quote">"A seamless experience. They handled the post-production with such precision
-                            the final cut exceeded expectations."</p>
-                        <h5 class="client-title">— Film Producer</h5>
+                        <p class="quote">"Events move fast, things change, moments happen once and they're gone. They kept up with all of it and still managed to produce content that looked polished and intentional. That level of investment is hard to find."</p>
+                        <h5 class="client-title">— One of One Events</h5>
                     </div>
                 </div>
 
@@ -304,103 +389,66 @@
         </div>
     </section>
 
+    <!-- ═══════════════ CTA ═══════════════ -->
+    <section class="cta-section relative py-36 md:py-48 overflow-hidden text-center">
+        <div class="cta-bg"></div>
+        <div class="absolute inset-0 bg-[#0a0a0a]/85"></div>
+        <div class="relative z-10 px-6">
+            <p class="text-[#8B0000] text-[11px] tracking-[6px] uppercase mb-8" data-aos="fade-up">Ready to create?</p>
+            <h2 class="text-white font-black text-5xl md:text-7xl uppercase tracking-wider leading-none mb-10" data-aos="fade-up" data-aos-delay="100">
+                Let's Make<br><span class="text-[#8B0000]">Something</span><br>Legendary.
+            </h2>
+            <a href="contact.html" class="cta-btn" data-aos="fade-up" data-aos-delay="200">Start a Project</a>
+        </div>
+    </section>
 
-
-
-
-    <footer class="footer-section">
-        <div class="container">
-            <div class="row gy-5">
-
-                <div class="col-lg-4 col-md-6">
-                    <a class="footer-brand text-uppercase fw-bold" href="#">B.NEXA <span
-                            class="accent-text-gold">Production</span></a>
-                    <p class="footer-desc mt-4">
-                        Be the Next Era of Xpression and Art. We are a visionary cinematography company dedicated to
-                        crafting stories that inspire, connect, and leave a lasting impression.
-                    </p>
-                </div>
-
-                <div class="col-lg-2 col-md-6 col-6">
-                    <h5 class="footer-heading text-uppercase mb-4">Quick Links</h5>
-                    <ul class="list-unstyled footer-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="portfolio.html">Portfolio</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-lg-3 col-md-6 col-6">
-                    <h5 class="footer-heading text-uppercase mb-4">Our Services</h5>
-                    <ul class="list-unstyled footer-links">
-                        <li><a href="#">Social Media Content</a></li>
-                        <li><a href="#">Event Coverage</a></li>
-                        <li><a href="#">Documentaries</a></li>
-                        <li><a href="#">Commercials & Film</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-lg-3 col-md-6 text-lg-end">
-                    <h5 class="footer-heading text-uppercase mb-4">Follow Us</h5>
-                    <div class="social-icons">
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-col footer-col--brand">
+                <img src="WEBSITE_MEDIA/5.png" alt="B.NEXA Production Logo" class="footer-logo">
+                <p class="footer-desc">We are a visionary cinematography company dedicated to crafting stories that inspire, connect, and leave a lasting impression.</p>
             </div>
-
-            <div class="footer-bottom mt-5 pt-4 text-center">
-                <p class="mb-0 opacity-50">&copy; B.NEXA. All Rights Reserved 2026</p>
+            <div class="footer-col">
+                <h5 class="footer-heading">Quick Links</h5>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="how-we-work.html">About Us</a></li>
+                    <li><a href="Social-Media-Content-Production.html">Portfolio</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
             </div>
+            <div class="footer-col">
+                <h5 class="footer-heading">Our Services</h5>
+                <ul class="footer-links">
+                    <li><a href="Social-Media-Content-Production.html">Social Media Content</a></li>
+                    <li><a href="Event-Coverage-And-Documentaries.html">Event Coverage</a></li>
+                    <li><a href="Event-Coverage-And-Documentaries.html">Documentaries</a></li>
+                    <li><a href="Commercials-And-Movie-Making.html">Commercials & Film</a></li>
+                </ul>
+            </div>
+            <div class="footer-col footer-col--social">
+                <h5 class="footer-heading">Follow Us</h5>
+                <div class="footer-socials">
+                    <a href="https://www.instagram.com/b.nexa_/" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="mailto:bnexaproduction@gmail.com" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="https://www.linkedin.com/company/bnexaproduction" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; B.NEXA Production. All Rights Reserved 2026</p>
         </div>
     </footer>
 
-
-
-
-
-
-
     <button id="backToTopBtn" class="back-to-top" aria-label="Back to top">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="18 15 12 9 6 15"></polyline>
         </svg>
     </button>
-
-
-
-
-
-
-
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-
-
-
-    <button id="backToTopBtn" class="back-to-top" aria-label="Back to top">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round">
-            <polyline points="18 15 12 9 6 15"></polyline>
-        </svg>
-    </button>
-
-
-
-<script src="home.js"></script>
-
-
-
+    <script src="shared.js"></script>
+    <script src="home.js"></script>
 </body>
-
 </html>
