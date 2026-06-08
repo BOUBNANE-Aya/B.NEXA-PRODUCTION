@@ -132,3 +132,45 @@ body { font-family: 'Montserrat', sans-serif; background: #0a0a0a; color: #fff; 
   .process-card-light { padding: 36px 28px; }
   .step-bg-number-light { font-size: 6rem; }
 }
+
+/* ── CLIENT LOGO BELT ── */
+.client-grid-light {
+  background: #080808;
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+
+.logo-belt-wrapper {
+  overflow: hidden;
+  width: 100%;
+  padding: 10px 0 50px;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.logo-belt-track {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  width: max-content;
+  animation: beltScroll 38s linear infinite;
+}
+
+@keyframes beltScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.logo-belt-item {
+  flex-shrink: 0;
+  height: 80px;
+  width: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-belt-item img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}

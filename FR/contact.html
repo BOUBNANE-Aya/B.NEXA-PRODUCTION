@@ -14,6 +14,7 @@
 
     <link rel="stylesheet" href="../shared.css">
     <link rel="stylesheet" href="../contact.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
 <body>
@@ -70,42 +71,97 @@
             <div class="row g-5">
 
                 <div class="col-lg-6" data-aos="fade-right">
-                    <div class="silver-card form-card">
-                        <h3 class="text-uppercase fw-bold mb-4 dark-grey-text">Envoyer un <span class="accent-text-red">Message</span></h3>
-                        <p class="mb-5" style="color: rgba(255,255,255,0.45);">Remplissez le formulaire ci-dessous et notre équipe de production vous répondra dans les 24 heures.</p>
-                        <form class="cinematic-form-silver">
-                            <div class="row g-4">
-                                <div class="col-md-6">
-                                    <div class="input-group-silver">
-                                        <input type="text" id="name" required placeholder=" ">
-                                        <label for="name">Votre Nom</label>
+                    <div class="silver-card form-card" x-data="{
+                        loading: false,
+                        submitted: false,
+                        error: false,
+                        async handleSubmit(event) {
+                            this.loading = true;
+                            this.error = false;
+                            const data = Object.fromEntries(new FormData(event.target));
+                            try {
+                                const res = await fetch('https://api.web3forms.com/submit', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                                    body: JSON.stringify(data)
+                                });
+                                const json = await res.json();
+                                if (json.success) {
+                                    this.submitted = true;
+                                    event.target.reset();
+                                } else {
+                                    this.error = true;
+                                }
+                            } catch(e) {
+                                this.error = true;
+                            }
+                            this.loading = false;
+                        }
+                    }">
+                        <!-- Success State -->
+                        <div x-show="submitted" x-transition class="form-success">
+                            <div class="form-success-icon"><i class="fas fa-check"></i></div>
+                            <h4 class="text-uppercase fw-bold dark-grey-text mb-3" style="letter-spacing:2px;">Message Envoyé !</h4>
+                            <p style="color:rgba(255,255,255,0.5);max-width:320px;margin:0 auto 8px;">Merci de nous avoir contactés. Notre équipe de production vous répondra dans les 24 heures.</p>
+                            <button @click="submitted = false" class="btn-reset-form"><i class="fas fa-arrow-left me-2"></i>Envoyer un autre message</button>
+                        </div>
+
+                        <!-- Form -->
+                        <div x-show="!submitted">
+                            <h3 class="text-uppercase fw-bold mb-4 dark-grey-text">Envoyer un <span class="accent-text-red">Message</span></h3>
+                            <p class="mb-5" style="color: rgba(255,255,255,0.45);">Remplissez le formulaire ci-dessous et notre équipe de production vous répondra dans les 24 heures.</p>
+                            <form class="cinematic-form-silver" @submit.prevent="handleSubmit($event)">
+                                <input type="hidden" name="access_key" value="3f85e4da-2d03-48fc-affd-7c04890103a3">
+                                <input type="hidden" name="from_name" value="B.NEXA Production – Formulaire de Contact">
+                                <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+                                <div class="row g-4">
+                                    <div class="col-md-6">
+                                        <div class="input-group-silver">
+                                            <input type="text" id="name" name="name" required placeholder=" ">
+                                            <label for="name">Votre Nom</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-group-silver">
+                                            <input type="email" id="email" name="email" required placeholder=" ">
+                                            <label for="email">Adresse Email</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="input-group-silver position-relative">
+                                            <select id="subject" name="subject" required @change="$el.classList.toggle('selected', !!$el.value)">
+                                                <option value="" disabled selected>Sélectionnez un type de projet...</option>
+                                                <option value="Production de Contenu Réseaux Sociaux">Production de Contenu Réseaux Sociaux</option>
+                                                <option value="Couverture Événements">Couverture Événements</option>
+                                                <option value="Documentaire">Documentaire</option>
+                                                <option value="Publicité / Cinéma">Publicité / Cinéma</option>
+                                                <option value="Autre">Autre</option>
+                                            </select>
+                                            <i class="fas fa-chevron-down select-arrow"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="input-group-silver">
+                                            <textarea id="message" name="message" rows="4" required placeholder=" "></textarea>
+                                            <label for="message">Parlez-nous de votre vision...</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mt-4">
+                                        <button type="submit" class="contact-submit-btn-silver" :disabled="loading">
+                                            <span x-show="!loading">Envoyer le Message <i class="fas fa-arrow-right ms-2"></i></span>
+                                            <span :style="loading ? 'display:flex;align-items:center;justify-content:center;gap:8px' : 'display:none'">
+                                                <svg class="spin-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="18" height="18"><circle style="opacity:.25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path style="opacity:.75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
+                                                Envoi en cours...
+                                            </span>
+                                        </button>
+                                        <p x-show="error" x-transition class="form-error-msg mt-3">
+                                            <i class="fas fa-exclamation-circle me-1"></i> Une erreur s'est produite. Veuillez réessayer ou nous contacter directement par email.
+                                        </p>
+                                        <p class="form-note">Nous répondons généralement dans les 24 heures.</p>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="input-group-silver">
-                                        <input type="email" id="email" required placeholder=" ">
-                                        <label for="email">Adresse Email</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="input-group-silver">
-                                        <input type="text" id="subject" required placeholder=" ">
-                                        <label for="subject">Type de Projet</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="input-group-silver">
-                                        <textarea id="message" rows="4" required placeholder=" "></textarea>
-                                        <label for="message">Parlez-nous de votre vision...</label>
-                                    </div>
-                                </div>
-                                <div class="col-12 mt-4">
-                                    <button type="submit" class="contact-submit-btn-silver">
-                                        Envoyer le Message <i class="fas fa-arrow-right ms-2"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
 
@@ -117,27 +173,26 @@
                                 <div class="info-icon-silver"><i class="fas fa-envelope"></i></div>
                                 <div class="info-text">
                                     <h6 class="mb-0 dark-grey-text fw-bold">Envoyez-nous un Email</h6>
-                                    <a href="mailto:bnexaproduction@gmail.com" class="text-decoration-none">bnexaproduction@gmail.com</a>
+                                    <a href="mailto:b.nexaproduction@gmail.com" class="text-decoration-none">b.nexaproduction@gmail.com</a>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center mb-3 info-row-silver">
                                 <div class="info-icon-silver"><i class="fas fa-phone"></i></div>
                                 <div class="info-text">
                                     <h6 class="mb-0 dark-grey-text fw-bold">Appelez-Nous</h6>
-                                    <span>+212 600-000000</span>
+                                    <span>+212 762 845 455</span>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center mb-4 info-row-silver">
                                 <div class="info-icon-silver"><i class="fas fa-map-marker-alt"></i></div>
                                 <div class="info-text">
                                     <h6 class="mb-0 dark-grey-text fw-bold">Localisation</h6>
-                                    <span>Casablanca, Maroc</span>
+                                    <span>Mohammedia, Maroc</span>
                                 </div>
                             </div>
                         </div>
                         <div class="map-container-silver flex-grow-1">
-                            <iframe src="https://maps.app.goo.gl/8wpD2KX5PuStQaJJ6" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53117.33312774983!2d-7.388894699999999!3d33.68737985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda7b65541dc9c3d%3A0x89fe602f8927da05!2sMohammedia!5e0!3m2!1sen!2sma!4v1780879649119!5m2!1sen!2sma" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
                     </div>
                 </div>
 
