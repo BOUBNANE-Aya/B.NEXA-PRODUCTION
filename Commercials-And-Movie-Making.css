@@ -54,3 +54,20 @@ section img.img-fluid {
 section .col-md-6:hover img.img-fluid {
   filter: brightness(1);
 }
+
+/* ── MOBILE RESPONSIVE ── */
+@media (max-width: 768px) {
+  .gallery-img-tall {
+    height: 320px;
+  }
+  .portfolio-hero-light { height: 52vh; }
+  .portfolio-stacked-section .py-5 { padding-top: 2rem !important; padding-bottom: 2rem !important; }
+}
+
+@media (max-width: 480px) {
+  .gallery-img-tall {
+    height: 240px;
+  }
+  /* Stacked col-md-7/col-md-3 images get full width on mobile */
+  .cinematic-image-wrapper { border-radius: 8px; }
+}

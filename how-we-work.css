@@ -116,4 +116,19 @@ body { font-family: 'Montserrat', sans-serif; background: #0a0a0a; color: #fff; 
   .left-step, .right-step { left: 0; }
   .left-step .concept-node, .right-step .concept-node { left: 18px; right: auto; }
   .left-step .concept-card { border-left: 3px solid transparent; border-right: none; }
+
+  /* Reduce excessive padding on concept map section */
+  .concept-map-section { padding: 60px 0 80px; }
+  .concept-wrapper { padding: 30px 0; }
+
+  /* Process section padding */
+  .hww-process-light { padding: 60px 0; }
+
+  /* Hero */
+  .hww-hero-light { height: 70vh; }
+  .hww-overlay-light { background: rgba(0,0,0,0.88); }
+
+  /* Process cards */
+  .process-card-light { padding: 36px 28px; }
+  .step-bg-number-light { font-size: 6rem; }
 }

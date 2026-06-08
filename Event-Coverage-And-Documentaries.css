@@ -63,3 +63,20 @@ body { font-family: 'Montserrat', sans-serif; background: #0a0a0a; color: #fff; 
   color: rgba(255,255,255,0.45) !important;
   border-radius: 6px;
 }
+
+/* ── MOBILE RESPONSIVE ── */
+@media (max-width: 768px) {
+  .portfolio-hero-light { height: 52vh; }
+
+  /* Section padding tightening */
+  .portfolio-split-block .py-5 { padding-top: 2rem !important; padding-bottom: 2rem !important; }
+  .event-coverage-videos .py-4 { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
+
+  /* Image wrapper slight corner reduction */
+  .cinematic-image-wrapper { border-radius: 8px; }
+}
+
+@media (max-width: 480px) {
+  /* Cinematic image maintains aspect ratio but doesn't get too tall */
+  .cinematic-rounded-img { aspect-ratio: 4/3; }
+}

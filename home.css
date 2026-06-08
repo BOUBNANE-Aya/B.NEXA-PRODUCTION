@@ -437,3 +437,57 @@
 
 /* ── STAT NUMBERS ──────────────────────────── */
 .stat-number { font-family: 'Montserrat', sans-serif; line-height: 1; }
+
+/* ══════════════════════════════════════════════
+   MOBILE RESPONSIVE
+══════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+    /* Prison wall image — scale down from fixed 260×380 */
+    .prison-wall-container {
+        width: 200px;
+        height: 300px;
+    }
+
+    /* CTA button — reduce horizontal padding */
+    .cta-btn { padding: 14px 36px; }
+
+    /* Disable the floating/bobbing UI animation on mobile */
+    .floating-window { animation: none; }
+
+    /* Service cards — slightly shorter on tablet */
+    .cinematic-card { height: 360px; }
+
+    /* Vision section — reduce huge padding on mobile */
+    .vision-section { padding-top: 80px !important; padding-bottom: 80px !important; }
+
+    /* Film corners — scale down slightly */
+    .film-corner { width: 26px; height: 26px; }
+    .film-corner--tl, .film-corner--bl { left: 16px; }
+    .film-corner--tr, .film-corner--br { right: 16px; }
+    .film-corner--tl, .film-corner--tr { top: 16px; }
+    .film-corner--bl, .film-corner--br { bottom: 16px; }
+}
+
+@media (max-width: 480px) {
+    /* Prison wall image — further scale down on phones */
+    .prison-wall-container {
+        width: 160px;
+        height: 240px;
+    }
+
+    /* CTA button — minimal padding on very small screens */
+    .cta-btn { padding: 13px 24px; font-size: .68rem; }
+
+    /* Service cards */
+    .cinematic-card { height: 300px; }
+
+    /* Quote text in testimonials */
+    .quote { font-size: .88rem; }
+
+    /* Craft section description font */
+    .craft-desc { font-size: .82rem; }
+
+    /* Craft content — prevent overflow on very narrow screens */
+    .craft-content { left: 5%; right: 5%; }
+}

@@ -6,6 +6,9 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
+/* overflow-x on html AND body — body-only breaks position:fixed on iOS Safari */
+html { overflow-x: hidden; }
+
 body {
     font-family: var(--font);
     background: var(--dark);
@@ -276,6 +279,13 @@ body {
 @media (max-width: 1024px) {
     .nav-menu   { display: none; }
     .nav-burger { display: flex; }
+}
+
+@media (max-width: 480px) {
+    .nav-logo { height: 52px; }
+    .site-nav.scrolled .nav-logo { height: 44px; }
+    .nav-container { padding: 0 16px; }
+    .nav-mobile { padding: 10px 16px 18px; }
 }
 
 /* ══════════════════════════════════════════════
