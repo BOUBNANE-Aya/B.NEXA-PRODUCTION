@@ -1,10 +1,5 @@
-/* ── PRELOADER ─────────────────────────────── */
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        document.getElementById('preloader').classList.add('hidden');
-        animateHero();
-    }, 1600);
-});
+/* ── HERO INIT ──────────────────────────────── */
+document.addEventListener('DOMContentLoaded', animateHero);
 
 /* ── HERO TEXT REVEAL ──────────────────────── */
 function animateHero() {
